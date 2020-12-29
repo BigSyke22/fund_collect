@@ -20,9 +20,9 @@ class Fund():
 
     def print_info(self):
         if fund.amplitude > 0:
-            amplitude = "\033[31m+%f%%\033[0m"%fund.amplitude
+            amplitude = "\033[31m+%.2f%%\033[0m"%fund.amplitude
         else:
-            amplitude = "\033[32m%f%%\033[0m"%fund.amplitude
+            amplitude = "\033[32m%.2f%%\033[0m"%fund.amplitude
 
         info = amplitude + " " + self.name
         
