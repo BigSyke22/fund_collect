@@ -9,8 +9,8 @@ def calc_value(duration, growth, base):
     #print(grow_monthly)
     salary_monthly = base
     for time in range(0, duration_month):
-        if 0 == time % 12:
-            salary_monthly = salary_monthly * 1.12
+        if 0 == time % 12 and 0 != time:
+            salary_monthly = salary_monthly * 1.1
 
         value_this_priod = pow(grow_monthly, duration_month - time) * salary_monthly
         value += value_this_priod
