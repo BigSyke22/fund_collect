@@ -11,7 +11,7 @@ for row in tables.find_elements_by_xpath(".//li"):
         colum0 = col[0].text
         colum0 = colum0.replace("（","")
         colum0 = colum0.replace("）",",")       
-        with open('JJCD.txt','ab') as files: 
+        with open('../config/JJCD.txt','ab') as files: 
              JJCD = str(rownum) +','+colum0+ '\r\n' 
              JJCD = JJCD.encode('utf-8') 
              files.write(JJCD)
