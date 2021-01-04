@@ -19,6 +19,10 @@ def calc_value(years, investment, salary, salary_growth, inflation):
     print("current value considered inflation", int(value/ pow((1 + inflation), years)))
 
 if __name__ == '__main__':
+    if len(argv) < 6:
+        print("Example Insert: 10 0.2 15000 0.12 0.08")
+        quit()
+        
     years = int(argv[1])
     investment = float(argv[2])
     salary = int(argv[3])
