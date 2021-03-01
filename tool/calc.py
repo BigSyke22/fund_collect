@@ -26,7 +26,7 @@ def calc_value(years, investment, salary, salary_growth, inflation, bonus):
 
 if __name__ == '__main__':
     if len(argv) != 6:
-        print("Example Insert: 10 0.2 15000 0.12 0.08")
+        print("Example Insert: 10 0.25 10000 0.11 0.08")
         quit()
         
     years = int(argv[1])
