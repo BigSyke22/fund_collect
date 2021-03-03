@@ -32,7 +32,7 @@ def calc_value(years, investment, salary, salary_growth, inflation, bonus):
 
 if __name__ == '__main__':
     if len(argv) < 6:
-        print("Example Insert: 10 25 10000 11 8 1")
+        print("Example Insert: 10 25 10000 11 8 400000")
         quit()
         
     years = int(argv[1])
@@ -42,17 +42,17 @@ if __name__ == '__main__':
     inflation = float(argv[5]) / 100
     bonus = salary * 8
 
+    if len(argv) == 7:
+        base = int(argv[6])
+    else:
+        base = 0
+
     print("Considered Inflation")
 
-    if len(argv) == 7:
-        asset_this_year = 0
-        asset_last_year = 0
-        for year in range(1, years + 1):
-            asset_this_year = calc_value(year, investment, salary, salary_growth, inflation, bonus)
-            print("Year%d: %d Increasement: %d "%(year, asset_this_year, asset_this_year - asset_last_year))
-            asset_last_year = asset_this_year
 
-    else:
-        calc_value(years, investment, salary, salary_growth, inflation, bonus)
-        asset_this_year = calc_value(years, investment, salary, salary_growth, inflation, bonus)
-        print("Year%d: %d "%(years, asset_this_year))
+    asset_this_year = 0
+    asset_last_year = base
+    for year in range(1, years + 1):
+        asset_this_year = calc_value(year, investment, salary, salary_growth, inflation, bonus) + base * pow((1 + investment) / (1 + inflation), year)
+        print("Year%d: %d Increasement: %d "%(year, asset_this_year, asset_this_year - asset_last_year))
+        asset_last_year = asset_this_year
