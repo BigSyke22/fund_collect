@@ -1,5 +1,6 @@
 import math
-import  logging
+import argparse
+import logging
 from sys import argv
 
 LOG_LEVEL = logging.INFO
@@ -41,28 +42,35 @@ def calc_value(years, investment, salary, salary_growth, inflation, bonus):
     return asset
 
 if __name__ == '__main__':
-    if len(argv) < 6:
-        print("Example Insert: 10 20 10000 10 8 8 400000")
-        quit()
-        
-    years = int(argv[1])
-    investment = float(argv[2]) / 100
-    salary = int(argv[3])
-    salary_growth = float(argv[4]) / 100
-    inflation = float(argv[5]) / 100
-    bonus = salary * float(argv[6])
+    parser = argparse.ArgumentParser()
 
-    if len(argv) == 8:
-        base = int(argv[7])
+    parser.add_argument("years")
+    parser.add_argument("investment")
+    parser.add_argument("salary")
+    parser.add_argument("salary_growth")
+    parser.add_argument("inflation")
+    parser.add_argument("bonus")
+    parser.add_argument("-b", "--base", help="add base")
+
+    args = parser.parse_args()
+        
+    years = int(args.years)
+    investment = float(args.investment) / 100
+    salary = int(args.salary)
+    salary_growth = float(args.salary_growth) / 100
+    inflation = float(args.inflation) / 100
+    bonus = salary * float(args.bonus)
+
+    if args.base:
+        base = int(args.base) * 10000
     else:
         base = 0
 
-    print("Considered Inflation")
-
-
     asset_this_year = 0
     asset_last_year = base
+
     for year in range(1, years + 1):
         asset_this_year = calc_value(year, investment, salary, salary_growth, inflation, bonus) + base * pow((1 + investment) / (1 + inflation), year)
         print("Year%d: %d Increasement: %d "%(year, asset_this_year, asset_this_year - asset_last_year))
         asset_last_year = asset_this_year
+    
